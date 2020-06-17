@@ -12,45 +12,45 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
-import java.io.File; 
-import java.io.IOException; 
-import java.util.Scanner; 
+import java.io.File;
+import java.io.IOException;
+import java.util.Scanner;
 
-import javax.sound.sampled.AudioInputStream; 
-import javax.sound.sampled.AudioSystem; 
-import javax.sound.sampled.Clip; 
-import javax.sound.sampled.LineUnavailableException; 
-import javax.sound.sampled.UnsupportedAudioFileException; 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
-public class Menu extends JFrame implements ActionListener 
+public class Menu extends JFrame implements ActionListener
 {
 	public String name;
-	static Long currentFrame; 
-	static Clip clip; 
-	
-	// current status of clip 
-        static	String status; 
-	
-        static 	AudioInputStream audioInputStream; 
-	
-	static String filePath; 
+	static Long currentFrame;
+	static Clip clip;
+
+	// current status of clip
+        static	String status;
+
+        static 	AudioInputStream audioInputStream;
+
+	static String filePath;
 
 
 public static void main(String[] args)
-		throws UnsupportedAudioFileException, 
-		IOException, LineUnavailableException{ 
+		throws UnsupportedAudioFileException,
+		IOException, LineUnavailableException{
 	     	try{
-		// create AudioInputStream object 
-		audioInputStream = 
-				AudioSystem.getAudioInputStream(new File("Round.wav").getAbsoluteFile()); 
-		
-		// create clip reference 
-		clip = AudioSystem.getClip(); 
-		
-		// open audioInputStream to the clip 
-		clip.open(audioInputStream); 
-		
-		clip.loop(Clip.LOOP_CONTINUOUSLY); 
+		// create AudioInputStream object
+		audioInputStream =
+				AudioSystem.getAudioInputStream(new File("Round.wav").getAbsoluteFile());
+
+		// create clip reference
+		clip = AudioSystem.getClip();
+
+		// open audioInputStream to the clip
+		clip.open(audioInputStream);
+
+		clip.loop(Clip.LOOP_CONTINUOUSLY);
 		}
 		catch(UnsupportedAudioFileException e){
 			    throw new UnsupportedAudioFileException("Invalid operation for sorted list.");
@@ -59,21 +59,21 @@ public static void main(String[] args)
 
 
 		try
-		{ 
-			filePath = "Round.wav"; 
-			SimpleAudioPlayer audioPlayer = 
-							new SimpleAudioPlayer(); 
-			
-			audioPlayer.play(); 
-			
-		} 
-		
-		catch (Exception ex) 
-		{ 
-			System.out.println("Error with playing sound."); 
-			ex.printStackTrace(); 
-		
-		} 
+		{
+			filePath = "Round.wav";
+			SimpleAudioPlayer audioPlayer =
+							new SimpleAudioPlayer();
+
+			audioPlayer.play();
+
+		}
+
+		catch (Exception ex)
+		{
+			System.out.println("Error with playing sound.");
+			ex.printStackTrace();
+
+		}
     JFrame frame = new JFrame("Kaprysny Ptaszek");
     Menu menu = new Menu();
     JButton b1 = new JButton();
@@ -83,15 +83,15 @@ public static void main(String[] args)
     JButton b2 = new JButton();
     b2.addActionListener(menu);
     b2.setActionCommand("Score");
-     
+
     JButton b3 = new JButton();
     b3.addActionListener(menu);
     b3.setActionCommand("Exit");
-    
+
     b1.setPreferredSize(new Dimension(100,100));
     b1.setVisible(true);
     b1.setText("New Game");
-  
+
    b1.addActionListener(new java.awt.event.ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,9 +99,9 @@ public static void main(String[] args)
                         "Your nick : ", null);
 
     		System.out.println(name);
-		game.Game.run(name);
+		game.Game.start(name);
             }
-        });	
+        });
 
 
 
@@ -120,12 +120,12 @@ public static void main(String[] args)
 		try{
 		printSC(name);
 		 }
-		catch (Exception ex) 
-		{ 
-			System.out.println("Cant find player"); 
-		
-		} 
-        }} );	
+		catch (Exception ex)
+		{
+			System.out.println("Cant find player");
+
+		}
+        }} );
 
     b3.setPreferredSize(new Dimension(100,100));
     b3.setVisible(true);
@@ -133,16 +133,16 @@ public static void main(String[] args)
 
     Container C = frame.getContentPane();
     C.setLayout(new GridLayout(3, 1));
-    C.add(b3);	
+    C.add(b3);
     C.add(b2);
     C.add(b1);
     C.setSize(500,500);
-    C.setVisible(true);	    
+    C.setVisible(true);
     C.setBackground(Color.RED);
 
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
-    
-	
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+
     frame.setPreferredSize(new Dimension(400,400));
     frame.add(b1);
     frame.add(b2);
@@ -153,7 +153,7 @@ public static void main(String[] args)
 	while(true){}
 }
 
-public static void printSC(String name ) throws IOException, FileNotFoundException  
+public static void printSC(String name ) throws IOException, FileNotFoundException
 {
 
 		File file = new File(name);
@@ -183,4 +183,4 @@ public static void printSC(String name ) throws IOException, FileNotFoundExcepti
         }
     }
 
-}	
+}
